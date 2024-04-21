@@ -10,7 +10,8 @@ services:
     environment:
       NODE_ENV: development
       PORT: ${PORT:-3000}
-      DEBUG: ${DEBUG:-false}
+    volumes:
+      - .:/app
     ports:
       - ${PORT:-3000}:${PORT:-3000}
     depends_on:
@@ -29,7 +30,7 @@ services:
     expose:
       - 5432
     healthcheck:
-      test: ["CMD", "pg_isready"]
+      test: ['CMD', 'pg_isready']
       interval: 10s
       timeout: 5s
       retries: 5
